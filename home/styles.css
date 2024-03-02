@@ -46,7 +46,7 @@ uber-reg {
 /* specific styles*/
 
 html {
-  background-color: hotpink;
+  background-color: black;
   /* color: white; */
 }
 
@@ -94,3 +94,36 @@ html {
   /* padding: 0px 10px; */
   /* font-size: 1rem; */
 }
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: black;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #f2eded;
+  background-color: blue;
+  color: white;
+  opacity: 0.2;
+  border-radius: 8px;
+  border-radius: 18px;
+}
+
+/* Add a color to the active/current link */
+/* .topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+} */
+
