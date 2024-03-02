@@ -6,3 +6,25 @@
 h1{
     font-family: uberFont;
 }
+
+html{
+    background-color:black;
+    color: white;
+}
+
+#a1,#a2{
+    background: #e8e8e8;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    /* background-color: gblackreenyellow;
+    padding: 10px; */
+    gap: 10px;
+    width: fit-content;
+}
+
+.form-container > input{
+    height: max-content;
+}
