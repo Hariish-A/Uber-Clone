@@ -1,28 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Earn Money by Driving or Get a Ride Now  | Uber India </title>
-</head>
-<body>
-    <svg src = "../asset/uber-2.svg">
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../assets/Uber-favicon.svg" />
+    <title>Earn Money by Driving or Get a Ride Now | Uber India</title>
+  </head>
+  <body>
+    <nav>
+      <img src="../assets/uber-white.png" style="scale: 150%" />
+    </nav>
 
-    </svg>
-    <h3> Go anywhere with Uber </h3>
-    <form action = "POST">
-        <div class="form-container">
-            <input type = "text" id= "a1" placeholder = "Enter location"> 
-            <input type = "text" id = "a2" placeholder = "Enter destination">
-        </div>
-            
-    </form>
-</body>
+    <section id="hero">
+      <div class="hero-text">
+        <h3 class="uber-bold">Go anywhere with Uber</h3>
+        <br />
+        <h5>Request a ride, hop in, and go.</h5>
+        <br />
+        <form action="POST">
+          <div class="form-container">
+            <div class="src">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                data-baseweb="icon"
+              >
+                <title>search</title>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm5-2a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+
+              <input type="text" id="a1" placeholder="Enter location" />
+            </div>
+            <input type="text" id="a2" placeholder="Enter destination" />
+          </div>
+        </form>
+      </div>
+      <div class="hero-img">
+        <img src="../assets/images/home/img1.webp" alt="The very first image" />
+      </div>
+    </section>
+  </body>
 </html>
-
-
