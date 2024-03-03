@@ -1,0 +1,226 @@
+/* resets */
+:root {
+  --text-xs: 0.6875rem;
+  --text-sm: 0.8125rem;
+  --text-base: 1rem;
+  --text-md: 1.1875rem;
+  --text-lg: 1.4375rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.0625rem;
+  --text-3xl: 2.5rem;
+  --text-4xl: 3rem;
+}
+* {
+  margin: 0;
+}
+
+::marker {
+  content: "";
+}
+
+input:focus,
+input:hover {
+  outline: none;
+}
+/* fonts */
+@font-face {
+  font-family: uber-medium;
+  src: url(../assets/fonts/UberMove-Medium.woff2);
+}
+@font-face {
+  font-family: uber-reg;
+  src: url(../assets/fonts/UberMove-Regular.woff2);
+}
+@font-face {
+  font-family: uber-light;
+  src: url(../assets/fonts/UberMove-Light.woff2);
+}
+@font-face {
+  font-family: uber-bold;
+  src: url(../assets/fonts/UberMove-Bold.woff2);
+}
+/* Utility classes */
+
+uber-bold {
+  font-family: uber-bold;
+}
+uber-med {
+  font-family: uber-med;
+}
+uber-light {
+  font-family: uber-light;
+}
+uber-reg {
+  font-family: uber-reg;
+}
+
+/* specific styles*/
+
+html {
+  background-color: black;
+  /* color: white; */
+}
+
+.src {
+  display: flex;
+  background: #e8e8e8;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 5px;
+  width: 400px;
+  height: 40px;
+  background-color: #e8e8e8;
+}
+
+.src > svg {
+  padding: 10px;
+  border-radius: 6px;
+  color: black;
+}
+.src > * {
+  background: #e8e8e8;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: fit-content;
+  position: relative;
+}
+.form-container::before {
+  position: absolute;
+  top: 30px;
+  left: 24px;
+  content: "";
+  width: 1px;
+  height: 46px;
+  color: white;
+  background-color: white;
+}
+.form-container input {
+  height: 40px;
+  border: none;
+  font-size: 1.1rem;
+  /* border-radius: 4px; */
+  width: 400px;
+}
+
+.form-container > button {
+  align-self: start;
+  width: 120px;
+  height: 50px;
+  margin-top: 5px;
+  padding: 14px 25px;
+  border-radius: 10px;
+  font-family: uber-bold;
+  font-size: 0.85rem;
+}
+
+#hero {
+  padding: 64px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+}
+
+.hero-text {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+.hero-text > h3 {
+  font-size: 3.2rem;
+}
+.hero-text > h5 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+  font-size: 1rem;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+  /* background-color: black; */
+  overflow: hidden;
+  display: flex;
+}
+
+nav {
+  margin: 10px 80px 2px 80px;
+}
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: white;
+  text-align: center;
+  margin-right: 1px;
+  text-decoration: none;
+  /* font-size: 17px; */
+}
+
+.nav-left > ul > li:first-child > a {
+  font-family: uber-light;
+  font-size: 1.4rem;
+  font-weight: bold;
+  /* font-weight: lighter; */
+  padding: 8px 16px;
+  margin-top: 5px;
+}
+
+.nav-left > ul > li:not(:first-child) {
+  font-family: uber-medium;
+  margin: 14px 2px;
+  padding: 5px 10px;
+}
+
+.nav-left > ul > li:not(:first-child) > a {
+  font-size: 0.9rem;
+}
+.nav-left > ul > li:not(:first-child):hover {
+  background-color: #595959;
+  border-radius: 14px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-right > ul {
+  display: flex;
+  gap: 2px;
+}
+
+.nav-right > ul > li > a {
+  text-decoration: none;
+  color: white;
+  font-family: uber-medium;
+  font-size: 0.125rem;
+}
+.nav-right > ul > li:not(:last-child):hover {
+  background-color: #595959;
+  border-radius: 14px;
+}
+.nav-right > ul > li > a {
+  font-size: 0.9rem;
+}
+.nav-right > ul > li {
+  font-family: uber-medium;
+  margin: 14px 2px;
+  padding: 5px 10px;
+}
+
+.nav-right > ul > li:last-child {
+  background-color: white;
+  border-radius: 14px;
+}
+.nav-right > ul > li:last-child > a {
+  color: black;
+}
+
+#language > i {
+  transform: rotate(45deg);
+}

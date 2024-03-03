@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="style.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="../assets/Uber-favicon.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <title>Earn Money by Driving or Get a Ride Now | Uber India</title>
   </head>
   <body>
     <nav>
-      <img src="../assets/uber-white.png" style="scale: 150%" />
-      <div class="topnav">
-        <a href="#news">Ride</a>
-        <a href="#contact">Drive</a>
-        <a href="#about">Business</a>
-        <a href="#about">Uber Eats</a>
-        <a href="#about">About</a>
-        
+      <div class="nav-left">
+        <ul class="topnav">
+          <li>
+            <a href="#"> Uber</a>
+          </li>
+          <li><a href="#news">Ride</a></li>
+          <li><a href="#contact">Drive</a></li>
+          <li><a href="#about">Business</a></li>
+          <li><a href="#about">Uber Eats</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
       </div>
-    
+      <div class="nav-right">
+        <ul class="topnav">
+          <li>
+            <a href="#lang" id="language">
+              <i class="fa-solid fa-globe"></i> &nbsp; EN</a
+            >
+          </li>
+          <li>
+            <a href="#help">Help</a>
+          </li>
+          <li>
+            <a href="#login">Log in</a>
+          </li>
+          <li>
+            <a href="#signup"> Sign up</a>
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <section id="hero">
@@ -45,10 +69,9 @@
                   fill="currentColor"
                 ></path>
               </svg>
-
               <input type="text" id="a1" placeholder="Enter location" />
             </div>
-           
+
             <div class="src">
               <svg
                 width="20"
@@ -61,15 +84,14 @@
                 <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"
-                  d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm5-2a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z"
+                  d="M14 10h-4v4h4v-4ZM7 7v10h10V7H7Z"
                   fill="currentColor"
                 ></path>
               </svg>
-
               <input type="text" id="a2" placeholder="Enter destination" />
             </div>
-            
-            
+
+            <button type="submit" class="uber-bold">See prices</button>
           </div>
         </form>
       </div>
