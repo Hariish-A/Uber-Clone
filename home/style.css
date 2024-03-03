@@ -136,9 +136,91 @@ html {
   font-size: 3.2rem;
 }
 .hero-text > h5 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: uber-medium;
   font-weight: lighter;
   font-size: 1rem;
+}
+
+.carman-img{
+  padding-left: 400px;
+  padding-top: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* .carman-text{
+  font-family: uber-bold; 
+  color: black;
+  display: flex; 
+  justify-content: space-around;
+  font-size: 51.2px ;
+  padding-left: 900px;
+  padding-right: 200px;
+  margin-bottom:1000px ;
+  margin-left: 700px;
+  margin-right: 400px;
+  padding-bottom: 300px;
+}  */
+
+.carman-text{
+  float:right;
+  font-family: uber-bold;
+  color: black;
+  font-size: 50.2px ;
+  
+}
+
+.carman-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding-left: 150px;
+  padding-right: 300px;
+  gap: 30px;
+}
+
+.carman-container > h5{
+  font-family: uber-reg;
+  font-weight: lighter;
+  font-size: 1rem;
+  letter-spacing: 1px;
+
+}
+
+.carman-buttons{
+  
+    align-self: flex-start;
+    
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.carman-buttons > button:first-child{
+  background-color: black;
+  /* border-color: rgb(25, 83, 190); */
+  color:white;
+  border-width: 1px;
+  border-style:solid;
+  height:45px;
+  width: 120px;
+  border-radius: 9px;
+  cursor:pointer;
+  font-family: uber-medium;
+    font-size: 16px;
+}
+
+.carman-buttons > button:last-child{
+  color: black;
+  background-color: white;
+  border-color:black;
+  border: none;
+  border-bottom: 2px;
+  font-family: uber-reg;
+  font-size: 16px;
 }
 
 /* Add a black background color to the top navigation */
