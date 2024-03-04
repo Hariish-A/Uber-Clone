@@ -164,6 +164,10 @@ nav {
   & > * {
     background: #e8e8e8;
   }
+  &:nth-child(1) svg:last-of-type {
+    padding: 2px 5px 0 0;
+    outline: none;
+  }
 }
 
 .form-container {
@@ -273,6 +277,10 @@ main {
   cursor: pointer;
   font-family: uber-medium;
   font-size: 16px;
+
+  &:hover {
+    background-color: #5c5b5b;
+  }
 }
 
 .underline-button {
@@ -295,7 +303,8 @@ main {
   }
 }
 
-#language > i {
+#language > i,
+.globe {
   transform: rotate(45deg);
 }
 
