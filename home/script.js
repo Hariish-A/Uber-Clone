@@ -1,6 +1,8 @@
 let $ = (elt) => document.getElementById(elt);
 
-document.querySelector("button").addEventListener("click", (event) => {
-  document.querySelector(".dropdown-menu").classList.toggle("active");
-});
-
+document.querySelectorAll("button").forEach((x) =>
+  x.addEventListener("click", (event) => {
+    selector = `#${x.id}+.dropdown-menu`;
+    document.querySelector(selector).classList.toggle("active");
+  })
+);

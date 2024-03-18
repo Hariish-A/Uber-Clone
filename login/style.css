@@ -1,0 +1,86 @@
+/* resets */
+:root {
+  --text-xs: 0.6875rem;
+  --text-sm: 0.8125rem;
+  --text-base: 1rem;
+  --text-md: 1.1875rem;
+  --text-lg: 1.4375rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.0625rem;
+  --text-3xl: 2.5rem;
+  --text-4xl: 3rem;
+}
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+}
+
+::marker {
+  content: "";
+}
+ul {
+  padding: 0;
+}
+input:focus,
+input:hover {
+  outline: none;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+/* fonts */
+@font-face {
+  font-family: uber-medium;
+  src: url(../assets/fonts/UberMove-Medium.woff2);
+}
+@font-face {
+  font-family: uber-reg;
+  src: url(../assets/fonts/UberMove-Regular.woff2);
+}
+@font-face {
+  font-family: uber-light;
+  src: url(../assets/fonts/UberMove-Light.woff2);
+}
+@font-face {
+  font-family: uber-bold;
+  src: url(../assets/fonts/UberMove-Bold.woff2);
+}
+/* Utility classes */
+
+uber-bold {
+  font-family: uber-bold;
+}
+uber-med {
+  font-family: uber-med;
+}
+uber-light {
+  font-family: uber-light;
+}
+uber-reg {
+  font-family: uber-reg;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.topbar {
+  width: 100%;
+  height: 64px;
+  background-color: black;
+  position: relative;
+  > a {
+    position: absolute;
+    font-family: uber-light;
+    left: 64px;
+    top: 10px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding: 20px px;
+    margin-top: 5px;
+  }
+}
