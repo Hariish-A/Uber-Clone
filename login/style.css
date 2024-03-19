@@ -15,6 +15,7 @@
 ::before {
   margin: 0;
   padding: 0;
+  /* box-sizing: border-box; */
 }
 
 ::marker {
@@ -64,6 +65,9 @@ uber-reg {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
   width: 100vw;
   height: 100vh;
 }
@@ -83,4 +87,129 @@ body {
     padding: 20px px;
     margin-top: 5px;
   }
+}
+
+.container-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 328px;
+  padding: 10px;
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+p:first-of-type {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+input {
+  width: 100%;
+  border: none;
+  background-color: #f6f6f6;
+  height: 1.5rem;
+}
+
+.inp-wrapper {
+  background-color: #f6f6f6;
+
+  border-radius: 8px;
+  padding: 10px 0px 10px 12px;
+}
+
+.black-button {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: white;
+  background-color: #000000;
+  margin-bottom: 1rem;
+
+  &:hover {
+    background-color: #212121;
+  }
+}
+
+.or {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  font-size: 0.875 rem;
+  color: #8a8c92;
+  font-weight: normal;
+}
+
+.or::before {
+  position: absolute;
+  content: "";
+  width: 45%;
+  height: 1px;
+  background-color: #000;
+  left: 1%;
+  top: 51%;
+}
+.or::after {
+  position: absolute;
+  content: "";
+  width: 45%;
+  height: 1px;
+  background-color: #000;
+  right: 1%;
+  top: 51%;
+}
+
+.thick::after,
+.thick::before {
+  height: 1.5px;
+}
+
+.btn-group {
+  padding-block: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  > * {
+    padding: 14px 16px;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    width: 100%;
+
+    &:hover {
+      background-color: #dedede;
+    }
+  }
+}
+
+.qr-button {
+  padding: 14px 16px;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  background: none;
+  border: none;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  &:hover {
+    background-color: #f2f2f2;
+  }
+}
+
+.bottom {
+  font-size: 0.75rem;
+  color: #6b6b6b;
+  line-height: 1rem;
+  padding-right: 1rem;
 }
