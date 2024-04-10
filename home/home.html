@@ -71,7 +71,8 @@
               </li>
               <li>
                 <a href="../login/login.html"
-                  >Ride <i class="fa-solid fa-code-fork"></i></a>
+                  >Ride <i class="fa-solid fa-code-fork"></i
+                ></a>
               </li>
               <li>
                 <a href="../login/login.html"
@@ -143,7 +144,12 @@
                   fill="currentColor"
                 ></path>
               </svg>
-              <input type="text" id="a1" placeholder="Enter location" />
+              <!-- <input type="text" id="a1" placeholder="Enter location" /> -->
+              <div
+                class="autocomplete-container"
+                id="autocomplete-container"
+              ></div>
+
               <svg
                 width="2em"
                 height="2em"
@@ -176,7 +182,11 @@
                   fill="currentColor"
                 ></path>
               </svg>
-              <input type="text" id="a2" placeholder="Enter destination" />
+              <!-- <input type="text" id="a2" placeholder="Enter destination" /> -->
+              <div
+                class="autocomplete-container"
+                id="autocomplete-container1"
+              ></div>
             </div>
 
             <button type="submit" class="uber-bold">See prices</button>
@@ -297,7 +307,9 @@
       </div>
       <div class="socials-wrapper">
         <div class="socials">
-          <i class="fa-brands fa-square-facebook"></i>
+          <a href="https://www.facebook.com/uber/"
+            ><i class="fa-brands fa-square-facebook"></i
+          ></a>
           <i class="fa-brands fa-twitter"></i>
           <i class="fa-brands fa-youtube"></i>
           <i class="fa-brands fa-linkedin"></i>
