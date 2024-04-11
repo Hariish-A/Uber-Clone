@@ -7,7 +7,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="../assets/Uber-favicon.svg" />
+    <link rel="stylesheet" href="https://cdn.tutorialjinni.com/intl-tel-input/17.0.19/css/intlTelInput.css"/>
+    <script src="https://cdn.tutorialjinni.com/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+
     <title>Uber</title>
+
+
     <style>
         *{
             padding: 0;
@@ -21,13 +30,16 @@
         }
 
         form{
+            margin-top: 9rem;
             display: flex;
             justify-content: center;
             align-self: center;
             align-items: center;
             flex-direction: column;
-            height: 65%;
+            height: 30%;
             width:40vw;
+            margin-bottom: 0;
+
         }
 
         .input-name{
@@ -50,40 +62,134 @@
             font-size: 24px;
         }
       
+        #phone{
+            padding:10px 14px;
+            margin-top: 40px;
+            display: flex;
+            gap: 10px;
+            width: 320px;
+            height:46px;
+        }
+
+        .back-button{
+            border-radius: 50%;
+            width: 3.5rem;
+            height: 3.5rem;
+            border: none;
+        }
+
+        .button-group{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12rem;
+            padding-top: 36px;
+        }
+
+        .next-button{
+            font-family: uber-reg;
+            background-color: black;
+            color: white;
+            padding: 16px 15px;
+            border-radius: 24px;
+        }
+        
 
     </style>
 </head>
 <body>
-    <div class="topbar"><a href="../home/home.html">Uber</a></div>
+    <div class="topbar"><a style = "color: white; text-decoration: none; font-size: 25.6px;" href="../home/home.html">Uber</a></div>
 
     <form>
-        <h3 style="font-family: uber-bold">Confirm your information</h3>
-        <div class = "input-name">
-        <input type="text" placeholder="Please enter name">
-        <input type = "text" placeholder="Please enter surn">
+        <h3 style="font-family: uber-bold;">Confirm your information</h3>
+        <div class = "input-name" style = "margin-top: 40px;
+        display: flex;
+        gap: 10px;
+        width: 320px;
+        height:46px;">
+
+            <input type="text" style = "border-radius: 8px; padding:10px 14px;" placeholder="Please enter name " id = "firstname"> 
+            <span class = "alert-msg"> </span>
+            <input type = "text" style = "border-radius: 8px; padding:10px 14px;" placeholder="Please enter surn" id = "surname">
+            <span class = "alert-msg"> </span>
+
         </div>
+        <div style = "padding-top: 12px;">
+            <input name="phone" type="text" id="phone" placeholder="Mobile Number"/> 
+        </div>
+    </form>
 
-
-        <link rel="stylesheet" href="//cdn.tutorialjinni.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//cdn.tutorialjinni.com/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-        <link rel="stylesheet" href="//g.tutorialjinni.com/mojoaxel/bootstrap-select-country/dist/css/bootstrap-select-country.min.css" />
-
-        <select class="selectpicker countrypicker" data-flag="true"></select>
-
-        <script src="//cdn.tutorialjinni.com/jquery/3.6.1/jquery.min.js"></script>
-        <script src="//cdn.tutorialjinni.com/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="//cdn.tutorialjinni.com/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
-    <script src="//g.tutorialjinni.com/mojoaxel/bootstrap-select-country/dist/js/bootstrap-select-country.min.js"></script>
+    <div class = "button-group">
+        <button class = "back-button" onclick="location.href = 'login.html'">
+            <i class="fa-solid fa-arrow-left fa-xl"></i>
+        </button> 
+        <button class = "next-button" onclick = "validateForm(event)">
+            Next <i class="fa-solid fa-arrow-right fa-xl"></i>
+        </button>
+    </div>
+    
 
     <script>
-        $(document).ready(function() {
-            $('.selectpicker').selectpicker({
-                dropupAuto: false // Disable automatic dropup behavior
-            });
+        var input = document.querySelector("#phone");
+        window.intlTelInput(input, {
+        separateDialCode: true
         });
-    </script>
 
-    </form>
+        function validateForm(event){
+            event.preventDefault();
+            console.log(event)
+
+            let firstname = document.getElementById('firstname').value;
+            let surname = document.getElementById('surname').value;
+            let phone = document.getElementById('phone').value;
+
+            const nameRegex = /^[a-zA-Z]+$/;
+            const phoneRegex = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+            let errorMessage = "";
+
+            if (!nameRegex.test(firstname)) {
+                errorMessage = "Given firstname is not valid.\n";
+                document.getElementsByClassName("alert-msg")[0].innerHTML = errorMessage; 
+                document.getElementsByClassName("alert-msg")[0].style.color = "red"; 
+                // document.getElementById("firstname").style.color = "red";
+            } else {
+                document.getElementsByClassName("alert-msg")[0].innerHTML = ""; 
+                // document.getElementById("name").style.outline = "2px solid green";
+            }
+
+            errorMessage = "";
+
+            if (!nameRegex.test(surname)) {
+                errorMessage = "Given surname is not valid.\n";
+                document.getElementsByClassName("alert-msg")[1].innerHTML = errorMessage; 
+                document.getElementsByClassName("alert-msg")[1].style.color = "red";
+                // document.getElementById("surname").style.color = "red";
+            } else {
+                document.getElementsByClassName("alert-msg")[1].innerHTML = ""; 
+                // document.getElementById("name").style.outline = "2px solid green";
+            }
+
+            errorMessage = ""
+
+            if (!phoneRegex.test(phone)) {
+                errorMessage = "This phone number is invalid.\n";
+                document.getElementsByClassName("alert-msg")[2].innerHTML = errorMessage; 
+                document.getElementsByClassName("alert-msg")[2].style.color = "red";
+                // document.getElementById("surname").style.color = "red";
+            } else {
+                document.getElementsByClassName("alert-msg")[2].innerHTML = ""; 
+                // document.getElementById("name").style.outline = "2px solid green";
+            }
+
+
+
+
+
+
+        } 
+
+    
+    </script>
 
 </body>
 </html>
