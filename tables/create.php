@@ -18,13 +18,27 @@ $sql = "CREATE TABLE users (
     firstname VARCHAR(20) NOT NULL,
     surname VARCHAR(20) NOT NULL,
     phone BIGINT NOT NULL,
-    email VARCHAR(20) NOT NULL,
+    email VARCHAR(20) NOT NULL
+)";
+
+$sql2 = "CREATE TABLE ride (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    source VARCHAR(100),
+    destination VARCHAR(100),
+    price FLOAT NOT NULL CHECK(price > 0),
+    ordertime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )";
 
 
 // Execute SQL query
 if ($conn->query($sql) === TRUE) {
     echo " Table 'users' created successfully!";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+
+if ($conn->query($sql2) === TRUE) {
+    echo " Table 'ride' created successfully!";
 } else {
     echo "Error creating table: " . $conn->error;
 }

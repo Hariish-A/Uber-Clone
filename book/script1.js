@@ -1,3 +1,12 @@
+
+
+document.querySelectorAll("button").forEach((x) =>
+  x.addEventListener("click", (event) => {
+    selector = `#${x.id}+.dropdown-menu`;
+    document.querySelector(selector).classList.toggle("active");
+  })
+);
+
 function addressAutocomplete(containerElement, callback, options) {
   const MIN_ADDRESS_LENGTH = 3;
   const DEBOUNCE_DELAY = 300;
