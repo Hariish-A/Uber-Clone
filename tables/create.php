@@ -23,12 +23,11 @@ $sql = "CREATE TABLE users (
 
 $sql2 = "CREATE TABLE ride (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    source VARCHAR(100),
-    destination VARCHAR(100),
+    source VARCHAR(500),
+    destination VARCHAR(500),
     price FLOAT NOT NULL CHECK(price > 0),
     ordertime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )";
-
 
 // Execute SQL query
 if ($conn->query($sql) === TRUE) {

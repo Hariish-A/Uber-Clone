@@ -88,7 +88,32 @@ uber-reg {
 }
 
 
-/* autocomplete api*/
+.autocomplete-container {
+  margin-bottom: 20px;
+}
+
+.input-container {
+  display: flex;
+  position: relative;
+  width: 300px;
+  background-color: #e8e8e8;
+  justify-content: start;
+}
+
+.input-container input {
+  flex: 1;
+  outline: none;
+  /* width: 200px; */
+  /* border: 1px solid rgba(0, 0, 0, 0.2); */
+  /* padding: 10px;
+  padding-right: 31px; */
+  font-size: 16px;
+  /* margin-right: 175px;
+        margin-left: 150px;
+        margin-top: 200px; */
+  background-color: #e8e8e8;
+}
+
 .autocomplete-items {
   position: absolute;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -138,4 +163,11 @@ uber-reg {
   color: rgba(0, 0, 0, 0.6);
 }
 
-/* end autocomplete */
+
+#my-map {
+  width: 400px;
+  height: 400px;
+  margin: 0;
+  margin-top: 50px;
+
+}
