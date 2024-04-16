@@ -113,7 +113,8 @@ p:first-of-type {
   margin-bottom: 0.5rem;
 }
 input {
-  width: 100%;
+  /* width: 100%; */
+  width: 80%;
   border: none;
   background-color: #f6f6f6;
   height: 1.5rem;
@@ -215,3 +216,7 @@ input {
   padding-right: 1rem;
 }
 
+.input-group{
+    display: flex;
+    flex-direction: column;
+}
