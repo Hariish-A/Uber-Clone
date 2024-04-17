@@ -1,16 +1,19 @@
-
-document.querySelectorAll("button").forEach((x) =>{
-
-  if(x.id === "route"){
+document.querySelectorAll("button").forEach((x) => {
+  if (x.id === "route") {
     return;
   }
   x.addEventListener("click", (event) => {
     selector = `#${x.id}+.dropdown-menu`;
     document.querySelector(selector).classList.toggle("active");
-  })
-}
-);
+  });
+});
 
+let $ = (ele) => document.getElementById(ele);
+
+
+$('form').addEventListener("submit", (event) => {
+    event.preventDefault()
+})
 function addressAutocomplete(containerElement, callback, options) {
   const MIN_ADDRESS_LENGTH = 3;
   const DEBOUNCE_DELAY = 300;
@@ -247,7 +250,8 @@ function addressAutocomplete(containerElement, callback, options) {
   });
 }
 
-let sourcelat,sourcelon,destlat,destlon;
+let sourcelat, sourcelon, destlat, destlon;
+let src, dst;
 
 addressAutocomplete(
   document.getElementById("autocomplete-container"),
@@ -255,20 +259,18 @@ addressAutocomplete(
     console.log(data);
     if (data) {
       const coordinates = data;
+      src = coordinates.address_line1 + " " + coordinates.address_line2;
       sourcelat = coordinates.lat;
-      sourcelon = coordinates.lon; 
+      sourcelon = coordinates.lon;
       console.log("Latitude:", sourcelat);
       console.log("Longitude:", sourcelon);
-
-    } 
-    
-    else {
+    } else {
       console.log("No location selected.");
     }
   },
 
   {
-    placeholder: "Enter source",
+    placeholder: "Pick-up location",
   }
 );
 
@@ -278,19 +280,20 @@ addressAutocomplete(
     console.log(data);
     if (data) {
       const coordinates = data;
+      dst = coordinates.address_line1 + " " + coordinates.address_line2;
+
       destlat = coordinates.lat;
       destlon = coordinates.lon;
       console.log("Latitude:", destlat);
-      console.log("Longitude:", destlon); 
-    } 
-    
-    else {
+      console.log("Longitude:", destlon);
+      enableButton();
+    } else {
       console.log("No location selected.");
     }
   },
 
-  {    
-    placeholder: "Enter  destination",
+  {
+    placeholder: "Drop-off location",
   }
 );
 
@@ -314,103 +317,169 @@ addressAutocomplete(
 //   return `${layer.feature.properties.distance} ${layer.feature.properties.distance_units}, ${layer.feature.properties.time}`
 // }).addTo(map);
 
-let displayMap = (event) =>{
-  event.preventDefault()
-if(sourcelat && destlat){
-  console.log("Ok")
-  const map = L.map('my-map').setView([11.0168, 76.9558], 12);
-  
-  // The API Key provided is restricted to JSFiddle website
-  // Get your own API Key on https://myprojects.geoapify.com
-  const myAPIKey = "847104cf6c4a438798542c36175206a2";
-  
-  // Retina displays require different mat tiles quality
-  const isRetina = L.Browser.retina;
-  
-  const baseUrl = "https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey={apiKey}";
-  const retinaUrl = "https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}@2x.png?apiKey={apiKey}";
-  
-  // Add map tiles layer. Set 20 as the maximal zoom and provide map data attribution.
-  L.tileLayer(isRetina ? retinaUrl : baseUrl, {
-    attribution: 'Powered by <a href="https://www.geoapify.com/" target="_blank">Geoapify</a> | <a href="https://openmaptiles.org/" rel="nofollow" target="_blank">© OpenMapTiles</a> <a href="https://www.openstreetmap.org/copyright" rel="nofollow" target="_blank">© OpenStreetMap</a> contributors',
-    apiKey: myAPIKey,
-    maxZoom: 20,
-    id: 'osm-bright',
-  }).addTo(map);
-  
-  // calculate and display routing:
-  // from 38.937165,-77.045590 (1920 Quincy Street Northwest, Washington, DC 20011, United States of America)
-  const fromWaypoint =  [sourcelat,sourcelon]; // latutude, longitude
-  const fromWaypointMarker = L.marker(fromWaypoint).addTo(map).bindPopup("1920 Quincy Street Northwest, Washington, DC 20011, United States of America");
-  
-  // to 38.881152,-76.990693 (1125 G Street Southeast, Washington, DC 20003, United States of America)
-  const toWaypoint = [destlat,destlon];  // latitude, longitude
-  const toWaypointMarker = L.marker(toWaypoint).addTo(map).bindPopup("1125 G Street Southeast, Washington, DC 20003, United States of America");
-  
-  
-  
-  const turnByTurnMarkerStyle = {
-    radius: 5,
-    fillColor: "#fff",
-    color: "#555",
-    weight: 1,
-    opacity: 1,
-    fillOpacity: 1
-  }
-  
-  
-  fetch(`https://api.geoapify.com/v1/routing?waypoints=${fromWaypoint.join(',')}|${toWaypoint.join(',')}&mode=drive&apiKey=${myAPIKey}`).then(res => res.json()).then(result => {
-    console.log("Here ")
-    console.log(result)
-    // Note! GeoJSON uses [longitude, latutude] format for coordinates
-    L.geoJSON(result, {
-      style: (feature) => {
-        return {
-          color: "rgba(20, 137, 255, 0.7)",
-          weight: 5
-        };
-      }
-    }).bindPopup((layer) => {
-      return `${layer.feature.properties.distance} ${layer.feature.properties.distance_units}, ${layer.feature.properties.time}`
-    }).addTo(map);
-  
-    // collect all transition positions
-    const turnByTurns = [];
-    result.features.forEach(feature => feature.properties.legs.forEach((leg, legIndex) => leg.steps.forEach(step => {
-      const pointFeature = {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": feature.geometry.coordinates[legIndex][step.from_index]
+const map = L.map("my-map").setView([11.0168, 76.9558], 12);
+
+// The API Key provided is restricted to JSFiddle website
+// Get your own API Key on https://myprojects.geoapify.com
+const myAPIKey = "847104cf6c4a438798542c36175206a2";
+
+// Retina displays require different mat tiles quality
+const isRetina = L.Browser.retina;
+
+const baseUrl =
+  "https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey={apiKey}";
+const retinaUrl =
+  "https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}@2x.png?apiKey={apiKey}";
+
+// Add map tiles layer. Set 20 as the maximal zoom and provide map data attribution.
+L.tileLayer(isRetina ? retinaUrl : baseUrl, {
+  attribution:
+    'Powered by <a href="https://www.geoapify.com/" target="_blank">Geoapify</a> | <a href="https://openmaptiles.org/" rel="nofollow" target="_blank">© OpenMapTiles</a> <a href="https://www.openstreetmap.org/copyright" rel="nofollow" target="_blank">© OpenStreetMap</a> contributors',
+  apiKey: myAPIKey,
+  maxZoom: 20,
+  id: "osm-bright",
+}).addTo(map);
+
+let displayMap = (event) => {
+  document.querySelector(".rides").classList.remove("hide");
+
+  $("from").value = src;
+  $("to").value = dst;
+
+  event.preventDefault();
+  if (sourcelat && destlat) {
+    console.log("Ok");
+    //   map = L.map('my-map').setView([11.0168, 76.9558], 12);
+
+    // The API Key provided is restricted to JSFiddle website
+    // Get your own API Key on https://myprojects.geoapify.com
+    //   myAPIKey = "847104cf6c4a438798542c36175206a2";
+
+    //   // Retina displays require different mat tiles quality
+    //   isRetina = L.Browser.retina;
+
+    //   baseUrl = "https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey={apiKey}";
+    //   retinaUrl = "https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}@2x.png?apiKey={apiKey}";
+
+    // Add map tiles layer. Set 20 as the maximal zoom and provide map data attribution.
+    //   L.tileLayer(isRetina ? retinaUrl : baseUrl, {
+    //     attribution: 'Powered by <a href="https://www.geoapify.com/" target="_blank">Geoapify</a> | <a href="https://openmaptiles.org/" rel="nofollow" target="_blank">© OpenMapTiles</a> <a href="https://www.openstreetmap.org/copyright" rel="nofollow" target="_blank">© OpenStreetMap</a> contributors',
+    //     apiKey: myAPIKey,
+    //     maxZoom: 20,
+    //     id: 'osm-bright',
+    //   }).addTo(map);
+
+    // calculate and display routing:
+    // from 38.937165,-77.045590 (1920 Quincy Street Northwest, Washington, DC 20011, United States of America)
+    const fromWaypoint = [sourcelat, sourcelon]; // latutude, longitude
+    const fromWaypointMarker = L.marker(fromWaypoint).addTo(map).bindPopup(src);
+
+    // to 38.881152,-76.990693 (1125 G Street Southeast, Washington, DC 20003, United States of America)
+    const toWaypoint = [destlat, destlon]; // latitude, longitude
+    const toWaypointMarker = L.marker(toWaypoint).addTo(map).bindPopup(dst);
+
+    const turnByTurnMarkerStyle = {
+      radius: 5,
+      fillColor: "#fff",
+      color: "#555",
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 1,
+    };
+
+    fetch(
+      `https://api.geoapify.com/v1/routing?waypoints=${fromWaypoint.join(
+        ","
+      )}|${toWaypoint.join(",")}&mode=drive&apiKey=${myAPIKey}`
+    )
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          console.log(result);
+          // Note! GeoJSON uses [longitude, latutude] format for coordinates
+          L.geoJSON(result, {
+            style: (feature) => {
+              return {
+                color: "rgba(20, 137, 255, 0.7)",
+                weight: 5,
+              };
+            },
+          })
+            .bindPopup((layer) => {
+              return `${layer.feature.properties.distance} ${layer.feature.properties.distance_units}, ${layer.feature.properties.time}`;
+            })
+            .addTo(map);
+
+          // collect all transition positions
+          const turnByTurns = [];
+          result.features.forEach((feature) =>
+            feature.properties.legs.forEach((leg, legIndex) =>
+              leg.steps.forEach((step) => {
+                const pointFeature = {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates:
+                      feature.geometry.coordinates[legIndex][step.from_index],
+                  },
+                  properties: {
+                    instruction: step.instruction.text,
+                  },
+                };
+                turnByTurns.push(pointFeature);
+              })
+            )
+          );
+
+          L.geoJSON(
+            {
+              type: "FeatureCollection",
+              features: turnByTurns,
+            },
+            {
+              pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, turnByTurnMarkerStyle);
+              },
+            }
+          )
+            .bindPopup((layer) => {
+              return `${layer.feature.properties.instruction}`;
+            })
+            .addTo(map);
         },
-        "properties": {
-          "instruction": step.instruction.text
-        }
-      }
-      turnByTurns.push(pointFeature);
-    })));
-  
-    L.geoJSON({
-      type: "FeatureCollection",
-      features: turnByTurns
-    }, {
-      pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng, turnByTurnMarkerStyle);
-      }
-    }).bindPopup((layer) => {
-      return `${layer.feature.properties.instruction}`
-    }).addTo(map);
-  
-  }, error => console.log(err));
-  
-}  
+        (error) => console.log(error)
+      );
+  }
 
-// distance = (Math.acos(Math.sin(sourcelat) * Math.sin(destlat) + Math.cos(sourcelat) * Math.cos(destlat) * Math.cos(destlon - sourcelon)) * 6471);
-// console.log(distance);
+  // distance = (Math.acos(Math.sin(sourcelat) * Math.sin(destlat) + Math.cos(sourcelat) * Math.cos(destlat) * Math.cos(destlon - sourcelon)) * 6471);
+  // console.log(distance);
 
-var from = turf.point([sourcelat, sourcelon]);
-var to = turf.point([destlat, destlon]);
+  var from = turf.point([sourcelat, sourcelon]);
+  var to = turf.point([destlat, destlon]);
 
-var distance = turf.distance(from, to);
-console.log(distance)
-}
+  var distance = turf.distance(from, to);
+  console.log(distance);
+
+  displayFare(distance);
+};
+let enableButton = () => {
+  console.log("ok");
+  document.getElementById("route").removeAttribute("disabled");
+  document.getElementById("route").style.color = "white";
+  document.getElementById("route").style.backgroundColor = "black";
+};
+//    let type = document.querySelector('input[name="ride"]:checked').value;
+let autoFare, carFare;
+let displayFare = (distance) => {
+  autoFare = distance * 6.43;
+  carFare = distance * 11.32;
+  $("fare-auto").innerHTML = "&#8377; " + Math.round(autoFare,2);
+  $("fare-car").innerHTML = "&#8377;" + Math.round(carFare,2);
+};
+
+let handleSubmit = () => {
+  let type = document.querySelector('input[name="ride"]:checked').value;
+  $("type").value = type;
+  document.getElementsByName("fare")[0].value =
+    type == "auto" ? autoFare : carFare;
+};

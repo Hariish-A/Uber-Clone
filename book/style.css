@@ -64,16 +64,12 @@ uber-reg {
   font-family: uber-reg;
 }
 
-
-
-
-
 .topbar {
   width: 100%;
   height: 64px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   position: relative;
-  border-bottom: 3px solid #C5C8CB;
+  border-bottom: 3px solid #c5c8cb;
   > a {
     position: absolute;
     font-family: uber-light;
@@ -87,10 +83,9 @@ uber-reg {
   }
 }
 
-
-.autocomplete-container {
+/* .autocomplete-container {
   margin-bottom: 20px;
-}
+} */
 
 .input-container {
   display: flex;
@@ -111,7 +106,16 @@ uber-reg {
   /* margin-right: 175px;
         margin-left: 150px;
         margin-top: 200px; */
-  background-color: #e8e8e8;
+  background-color: #f2f2f2;
+  font-family: UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-weight: normal;
+  line-height: 24px;
+  margin-block: auto;
+  border-radius: 0.4rem;
+  &:hover {
+    background: white;
+  }
 }
 
 .autocomplete-items {
@@ -163,11 +167,136 @@ uber-reg {
   color: rgba(0, 0, 0, 0.6);
 }
 
-
 #my-map {
-  width: 400px;
-  height: 400px;
+  width: 120vh;
+  height: 80vh;
   margin: 0;
-  margin-top: 50px;
-
 }
+
+.card-title {
+  font-family: uber-bold;
+  font-size: 1.3rem;
+}
+
+/* custom styles*/
+body {
+  min-height: 100vh;
+}
+.content {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 64px);
+  gap: 2rem;
+}
+
+.book-ride {
+  align-self: start;
+  margin-top: 4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 70%;
+  gap: 30px;
+}
+.card {
+  border: 2px solid #cbcbcb;
+  border-radius: 4px;
+  padding: 10px;
+  padding-block: 15px;
+  width: 328px;
+  /* height: 360px; */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.from,
+.to {
+  display: flex;
+  background: #f2f2f2;
+  height: 3rem;
+  border-radius: 0.4rem;
+  &:has(> *:focus, > *:hover) {
+    background: white;
+    border: 1px solid black;
+  }
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+svg {
+  margin-block: auto;
+  margin-inline: 3px;
+  scale: 130%;
+}
+input {
+  border: none;
+  height: 2.5rem;
+  /* width: 90%; */
+}
+.autocomplete-container {
+  margin-block: auto;
+  margin-inline-end: 5px;
+}
+
+button {
+  height: 3rem;
+  font-family: uber-bold;
+  font-size: 1rem;
+  color: #a9a6a6;
+  background: #f2f2f2;
+  border-radius: 0.4rem;
+  border: none;
+}
+
+.rides {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #cbcbcb;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  p {
+    font-family: uber-bold;
+    font-size: 1.3rem;
+    padding: 10px;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.ride > img {
+  width: 80px;
+  height: 80px;
+}
+.ride {
+  margin: 0.5rem;
+  border-radius: 5px;
+  background: #f2f2f2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  input{
+    margin-left: 10px;
+  }
+}
+.ride-name {
+  font-family: uber-reg;
+  font-size: 1.3rem;
+}
+#fare-car, #fare-auto {
+  margin-inline-start: auto;
+  margin-inline-end: 30px;
+}
+
+.book {
+  background-color: black;
+  color: white;
+  margin: 0.5rem;
+}
+/* custom styles over*/
