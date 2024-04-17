@@ -87,6 +87,7 @@
         }
 
         .next-button{
+            width: 100px;
             font-family: uber-reg;
             background-color: black;
             color: white;
@@ -100,7 +101,8 @@
 <body>
     <div class="topbar"><a style = "color: white; text-decoration: none; font-size: 25.6px;" href="../home/home.html">Uber</a></div>
 
-    <form>
+    <form method = 'post' action="../tables/insert.php" onsubmit="return validateForm()" id = "form">
+        <!-- <form> -->
         <h3 style="font-family: uber-bold;">Confirm your information</h3>
         <div class = "input-name" style = "margin-top: 40px;
         display: flex;
@@ -108,50 +110,50 @@
         width: 320px;
         height:46px;">
 
-            <div class="input-group">
-                <input type="text" style = "border-radius: 8px; padding:10px 14px;" placeholder="Please enter name " id = "firstname">
-                <span class = "alert-msg"> </span>
-            </div>
-            <div class="input-group">
-                <input type = "text" style = "border-radius: 8px; padding:10px 14px;" placeholder="Please enter surn" id = "surname">
-                <span class = "alert-msg"> </span>
-            </div>
+            <input type="text" style = "border-radius: 8px; padding:10px 14px;" placeholder="Please enter name " id = "firstname" name = "firstname"> 
+            <span class = "alert-msg"> </span>
+            <input type = "text" style = "border-radius: 8px; padding:10px 14px;" placeholder="Please enter surn" id = "surname" name = "surname">
+            <span class = "alert-msg"> </span>
 
         </div>
-        <div style = "margin-top: 20px; padding-top: 12px;">
+        <div style = "padding-top: 12px;">
             <input name="phone" type="text" id="phone" placeholder="Mobile Number"/> 
+        </div>
+        <div class = "button-group">
+            <button class = "back-button" onclick="location.href = 'login.html'" >
+                <i class="fa-solid fa-arrow-left fa-xl"></i>
+            </button> 
+            <button class = "next-button">
+                Next <i class="fa-solid fa-arrow-right fa-xl"></i>
+            </button>
         </div>
     </form>
 
-    <div class = "button-group">
-        <button class = "back-button" onclick="location.href = 'login.html'">
-            <i class="fa-solid fa-arrow-left fa-xl"></i>
-        </button> 
-        <button class = "next-button" onclick = "validateForm(event)">
-            Next <i class="fa-solid fa-arrow-right fa-xl"></i>
-        </button>
-    </div>
     
 
     <script>
+        document.getElementById("form").addEventListener("submit", (event) =>{
+            if (!validateForm()){
+                event.preventDefault()
+            }
+        })
         var input = document.querySelector("#phone");
         window.intlTelInput(input, {
         separateDialCode: true
         });
 
-        function validateForm(event){
-            event.preventDefault();
-            console.log(event)
+        function validateForm(){
 
             let firstname = document.getElementById('firstname').value;
             let surname = document.getElementById('surname').value;
             let phone = document.getElementById('phone').value;
-
+            let ans = true
             const nameRegex = /^[a-zA-Z]+$/;
             const phoneRegex = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
             let errorMessage = "";
-
-            if (!nameRegex.test(firstname)) {
+            console.log("here")
+            if (!nameRegex.test(firstname))  {
+                ans = false
                 errorMessage = "Given firstname is not valid.\n";
                 document.getElementsByClassName("alert-msg")[0].innerHTML = errorMessage; 
                 document.getElementsByClassName("alert-msg")[0].style.color = "red"; 
@@ -164,6 +166,7 @@
             errorMessage = "";
 
             if (!nameRegex.test(surname)) {
+                ans = false
                 errorMessage = "Given surname is not valid.\n";
                 document.getElementsByClassName("alert-msg")[1].innerHTML = errorMessage; 
                 document.getElementsByClassName("alert-msg")[1].style.color = "red";
@@ -176,6 +179,7 @@
             errorMessage = ""
 
             if (!phoneRegex.test(phone)) {
+                ans = false
                 errorMessage = "This phone number is invalid.\n";
                 document.getElementsByClassName("alert-msg")[2].innerHTML = errorMessage; 
                 document.getElementsByClassName("alert-msg")[2].style.color = "red";
@@ -184,7 +188,7 @@
                 document.getElementsByClassName("alert-msg")[2].innerHTML = ""; 
                 // document.getElementById("name").style.outline = "2px solid green";
             }
-
+            ans = true
 
         } 
 

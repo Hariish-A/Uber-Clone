@@ -17,15 +17,16 @@ $sql = "CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     firstname VARCHAR(20) NOT NULL,
     surname VARCHAR(20) NOT NULL,
-    phone BIGINT NOT NULL,
-    email VARCHAR(20) NOT NULL
+    phone BIGINT NOT NULL
 )";
+
 
 $sql2 = "CREATE TABLE ride (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    source VARCHAR(500),
-    destination VARCHAR(500),
+    source VARCHAR(700),
+    destination VARCHAR(700),
     price FLOAT NOT NULL CHECK(price > 0),
+    type VARCHAR(10),
     ordertime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )";
 
