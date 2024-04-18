@@ -70,17 +70,33 @@ uber-reg {
   background-color: #ffffff;
   position: relative;
   border-bottom: 3px solid #c5c8cb;
-  > a {
-    position: absolute;
-    font-family: uber-light;
-    left: 64px;
-    top: 10px;
-    font-size: 1.6rem;
-    font-weight: bold;
-    padding: 20px px;
-    margin-top: 5px;
-    color: black;
-  }
+}
+#title {
+  position: absolute;
+  font-family: uber-light;
+  left: 64px;
+  top: 10px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding: 20px px;
+  margin-top: 5px;
+  color: black;
+}
+.user {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: flex;
+  gap: 10px;
+}
+p{
+    align-self: center;
+}
+.topbar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: auto;
 }
 
 /* .autocomplete-container {
@@ -281,7 +297,7 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
-  input{
+  input {
     margin-left: 10px;
   }
 }
@@ -289,7 +305,8 @@ button {
   font-family: uber-reg;
   font-size: 1.3rem;
 }
-#fare-car, #fare-auto {
+#fare-car,
+#fare-auto {
   margin-inline-start: auto;
   margin-inline-end: 30px;
 }
@@ -298,5 +315,10 @@ button {
   background-color: black;
   color: white;
   margin: 0.5rem;
+}
+
+.success{
+    display: flex;
+    justify-content: center;
 }
 /* custom styles over*/

@@ -1,5 +1,5 @@
 document.querySelectorAll("button").forEach((x) => {
-  if (x.id === "route") {
+  if (x.id === "route" || x.id==="book") {
     return;
   }
   x.addEventListener("click", (event) => {
@@ -12,7 +12,9 @@ let $ = (ele) => document.getElementById(ele);
 
 
 $('form').addEventListener("submit", (event) => {
-    event.preventDefault()
+    if (!handleSubmit()) {
+        event.preventDefault();
+    }
 })
 function addressAutocomplete(containerElement, callback, options) {
   const MIN_ADDRESS_LENGTH = 3;
@@ -479,7 +481,8 @@ let displayFare = (distance) => {
 
 let handleSubmit = () => {
   let type = document.querySelector('input[name="ride"]:checked').value;
-  $("type").value = type;
+//   $("mode").value = type;
   document.getElementsByName("fare")[0].value =
-    type == "auto" ? autoFare : carFare;
+    type == "auto" ? Math.round(autoFare, 2) : Math.round(carFare,2);
+    return true;
 };

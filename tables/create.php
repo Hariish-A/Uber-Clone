@@ -23,11 +23,13 @@ $sql = "CREATE TABLE users (
 
 $sql2 = "CREATE TABLE ride (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
     source VARCHAR(700),
     destination VARCHAR(700),
     price FLOAT NOT NULL CHECK(price > 0),
-    type VARCHAR(10),
-    ordertime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    mode VARCHAR(10),
+    ordertime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(user_id) REFERENCES users(id)
 )";
 
 // Execute SQL query
